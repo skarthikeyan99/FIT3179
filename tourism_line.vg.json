@@ -30,7 +30,7 @@
       "axis": {
         "title": "Passengers Carried (billions)",
         "format": "~s",
-        "labelExpr": "datum.value / 1e9"
+        "labelExpr": "datum.value / 1e9 + 'B'"
       }
     },
     "tooltip": [
