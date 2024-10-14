@@ -84,7 +84,7 @@
           "field": "International tourism, number of arrivals",
           "type": "quantitative",
           "axis": {
-            "title": "Number of Arrivals (millions)",
+            "title": "Number of Arrivals",
             "tickCount": 9,
             "values": [
               0, 30000000, 60000000, 90000000, 120000000, 150000000, 180000000,

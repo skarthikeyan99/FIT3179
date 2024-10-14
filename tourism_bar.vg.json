@@ -1,33 +1,26 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 600,
+  "width": 800,
   "height": 400,
   "title": {
-    "text": "Top 10 Countries by International Tourist Arrivals (2018)",
+    "text": "Top 10 Countries by Air Passengers Carried in 2019",
     "fontSize": 16,
     "font": "Montserrat"
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/skarthikeyan99/FIT3179/main/international-tourist-arrivals.csv"
+    "url": "https://raw.githubusercontent.com/skarthikeyan99/FIT3179/main/air-passengers-carried.csv"
   },
   "transform": [
-    { "filter": "datum.Year == 2018" },
-    { "filter": "datum['International tourism, number of arrivals'] > 0" },
+    { "filter": "datum.Year == 2019" },
     {
-      "window": [
-        {
-          "op": "rank",
-          "as": "rank"
-        }
-      ],
-      "sort": [
-        {
-          "field": "International tourism, number of arrivals",
-          "order": "descending"
-        }
-      ]
+      "filter": "datum.Entity == 'United States' || datum.Entity == 'China' || datum.Entity == 'Ireland' || datum.Entity == 'India' || datum.Entity == 'United Kingdom' || datum.Entity == 'Japan' || datum.Entity == 'Turkey' || datum.Entity == 'Germany' || datum.Entity == 'Russia' || datum.Entity == 'Brazil' || datum.Entity == 'United Arab Emirates'"
     },
-    { "filter": "datum.rank <= 10" }
+    {
+      "sort": [
+        { "field": "Air transport, passengers carried", "order": "descending" }
+      ],
+      "limit": 10
+    }
   ],
   "mark": "bar",
   "encoding": {
@@ -35,25 +28,29 @@
       "field": "Entity",
       "type": "nominal",
       "sort": "-x",
-      "title": null
+      "axis": { "title": "Country" }
     },
     "x": {
-      "field": "International tourism, number of arrivals",
+      "field": "Air transport, passengers carried",
       "type": "quantitative",
-      "title": "Number of Arrivals"
+      "axis": {
+        "title": "Passengers Carried",
+        "tickCount": 5,
+        "labelExpr": "datum.value / 1000000 + 'M'"
+      }
     },
     "color": {
       "field": "Entity",
       "type": "nominal",
-      "legend": null,
-      "scale": { "scheme": "category10" }
+      "scale": { "scheme": "category10" },
+      "legend": null
     },
     "tooltip": [
       { "field": "Entity", "type": "nominal", "title": "Country" },
       {
-        "field": "International tourism, number of arrivals",
+        "field": "Air transport, passengers carried",
         "type": "quantitative",
-        "title": "Arrivals",
+        "title": "Passengers Carried",
         "format": ",.0f"
       }
     ]
@@ -61,6 +58,10 @@
   "config": {
     "font": "Montserrat",
     "axis": {
+      "labelFont": "Montserrat",
+      "titleFont": "Montserrat"
+    },
+    "legend": {
       "labelFont": "Montserrat",
       "titleFont": "Montserrat"
     }

@@ -115,6 +115,30 @@
         <div id="bubble_chart"></div>
       </div>
 
+      <div class="chart-container">
+        <div class="chart-title">
+          Top 10 Countries by Air Passengers Carried
+        </div>
+        <div class="chart-description">
+          This bubble chart showcases the top countries based on the number of
+          international tourist arrivals. The size of each bubble corresponds to
+          the number of arrivals, providing a quick visual comparison between
+          leading tourism destinations.
+        </div>
+        <div id="bar_chart"></div>
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-title">Air Passengers Carried Worldwide</div>
+        <div class="chart-description">
+          This bubble chart showcases the top countries based on the number of
+          international tourist arrivals. The size of each bubble corresponds to
+          the number of arrivals, providing a quick visual comparison between
+          leading tourism destinations.
+        </div>
+        <div id="line_chart"></div>
+      </div>
+
       <div class="metadata">
         <p><strong>Author:</strong> Snekith Karthikeyan</p>
         <p><strong>Student ID:</strong> 32513283</p>
@@ -138,6 +162,8 @@
 
       vegaEmbed("#map_chart", "tourism_map.vg.json", vegaEmbedOpts);
       vegaEmbed("#bubble_chart", "tourism_bubble.vg.json", vegaEmbedOpts);
+      vegaEmbed("#bar_chart", "tourism_bar.vg.json", vegaEmbedOpts);
+      vegaEmbed("#line_chart", "tourism_line.vg.json", vegaEmbedOpts);
     </script>
   </body>
 </html>
