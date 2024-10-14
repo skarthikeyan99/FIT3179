@@ -1,0 +1,68 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 400,
+  "title": {
+    "text": "Top 10 Countries by International Tourist Arrivals (2018)",
+    "fontSize": 16,
+    "font": "Montserrat"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/skarthikeyan99/FIT3179/main/international-tourist-arrivals.csv"
+  },
+  "transform": [
+    { "filter": "datum.Year == 2018" },
+    { "filter": "datum['International tourism, number of arrivals'] > 0" },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "International tourism, number of arrivals",
+          "order": "descending"
+        }
+      ]
+    },
+    { "filter": "datum.rank <= 10" }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "Entity",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null
+    },
+    "x": {
+      "field": "International tourism, number of arrivals",
+      "type": "quantitative",
+      "title": "Number of Arrivals"
+    },
+    "color": {
+      "field": "Entity",
+      "type": "nominal",
+      "legend": null,
+      "scale": { "scheme": "category10" }
+    },
+    "tooltip": [
+      { "field": "Entity", "type": "nominal", "title": "Country" },
+      {
+        "field": "International tourism, number of arrivals",
+        "type": "quantitative",
+        "title": "Arrivals",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "config": {
+    "font": "Montserrat",
+    "axis": {
+      "labelFont": "Montserrat",
+      "titleFont": "Montserrat"
+    }
+  }
+}

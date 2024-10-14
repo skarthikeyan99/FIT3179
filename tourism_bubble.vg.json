@@ -2,13 +2,18 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 800,
   "height": 600,
-  "title": "International Tourism Arrivals by Country and Continent (2018)",
+  "title": {
+    "text": "International Tourism Arrivals by Country and Continent in 2018",
+    "fontSize": 16,
+    "font": "Montserrat"
+  },
   "data": {
     "url": "https://raw.githubusercontent.com/skarthikeyan99/FIT3179/main/international-tourist-arrivals.csv"
   },
   "params": [
     {
       "name": "Continent_selection",
+      "value": null,
       "bind": {
         "input": "select",
         "options": [
@@ -45,8 +50,23 @@
     },
     {
       "filter": "Continent_selection == null || datum.Continent == Continent_selection"
+    },
+    {
+      "calculate": "datum.Entity + ': ' + format(datum['International tourism, number of arrivals'], ',') + ' arrivals'",
+      "as": "tooltip_text"
     }
   ],
+  "config": {
+    "font": "Montserrat",
+    "axis": {
+      "labelFont": "Montserrat",
+      "titleFont": "Montserrat"
+    },
+    "legend": {
+      "labelFont": "Montserrat",
+      "titleFont": "Montserrat"
+    }
+  },
   "layer": [
     {
       "mark": {
@@ -79,16 +99,7 @@
           "type": "nominal",
           "scale": { "scheme": "category10" },
           "legend": { "title": "Continent" }
-        },
-        "tooltip": [
-          { "field": "Entity", "type": "nominal", "title": "Country" },
-          {
-            "field": "International tourism, number of arrivals",
-            "type": "quantitative",
-            "title": "Arrivals",
-            "format": ",.0f"
-          }
-        ]
+        }
       }
     },
     {
@@ -99,7 +110,8 @@
         "dx": 10,
         "dy": -10,
         "fontSize": 11,
-        "fontStyle": "italic"
+        "fontStyle": "italic",
+        "font": "Montserrat"
       },
       "encoding": {
         "x": { "field": "Continent", "type": "nominal" },
@@ -123,6 +135,76 @@
           "as": "annotation"
         }
       ]
+    },
+    {
+      "mark": "circle",
+      "encoding": {
+        "x": {
+          "field": "Continent",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "International tourism, number of arrivals",
+          "type": "quantitative"
+        },
+        "size": { "value": 100 },
+        "opacity": { "value": 0 }
+      },
+      "selection": {
+        "nearest": {
+          "type": "single",
+          "on": "mouseover",
+          "nearest": true,
+          "empty": "none",
+          "fields": ["Continent", "International tourism, number of arrivals"]
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5,
+        "dy": -5,
+        "fontSize": 11,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": { "field": "Continent", "type": "nominal" },
+        "y": {
+          "field": "International tourism, number of arrivals",
+          "type": "quantitative"
+        },
+        "text": {
+          "condition": {
+            "selection": "nearest",
+            "field": "tooltip_text"
+          },
+          "value": " "
+        },
+        "opacity": {
+          "condition": { "selection": "nearest", "value": 1 },
+          "value": 0
+        }
+      }
+    }
+  ],
+  "selection": {
+    "hover": {
+      "type": "single",
+      "on": "mouseover",
+      "nearest": true,
+      "empty": "none",
+      "fields": ["Continent", "International tourism, number of arrivals"]
+    }
+  },
+  "tooltip": [
+    { "field": "Entity", "type": "nominal", "title": "Country" },
+    {
+      "field": "International tourism, number of arrivals",
+      "type": "quantitative",
+      "title": "Number of Arrivals",
+      "format": ",.0f"
     }
   ]
 }
