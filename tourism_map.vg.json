@@ -3,9 +3,46 @@
   "width": 900,
   "height": 450,
   "projection": {
-    "type": "equalEarth",
-    "rotate": [-10, 0, 0]
+    "type": "equalEarth"
   },
+  "params": [
+    {
+      "name": "zoom",
+      "value": 1,
+      "bind": {
+        "input": "range",
+        "min": 0.7,
+        "max": 8,
+        "step": 0.1
+      }
+    },
+    {
+      "name": "center",
+      "value": [0, 0],
+      "bind": {
+        "input": "select",
+        "options": [
+          [0, 0],
+          [15, 50],
+          [-100, 40],
+          [-60, -15],
+          [20, 0],
+          [100, 30],
+          [135, -25]
+        ],
+        "labels": [
+          "World",
+          "Europe",
+          "North America",
+          "South America",
+          "Africa",
+          "Asia",
+          "Australia"
+        ],
+        "name": "Continent: "
+      }
+    }
+  ],
   "config": {
     "view": { "stroke": "transparent" },
     "style": {
@@ -38,6 +75,12 @@
         "fill": "lightgray",
         "stroke": "white",
         "strokeWidth": 0.5
+      },
+      "projection": {
+        "type": "equalEarth",
+        "scale": { "expr": "140 * zoom" },
+        "center": { "expr": "center" },
+        "translate": [{ "signal": "width / 2" }, { "signal": "height / 2" }]
       }
     },
     {
@@ -50,6 +93,12 @@
         "fill": null,
         "stroke": "#ccc",
         "strokeWidth": 0.5
+      },
+      "projection": {
+        "type": "equalEarth",
+        "scale": { "expr": "140 * zoom" },
+        "center": { "expr": "center" },
+        "translate": [{ "signal": "width / 2" }, { "signal": "height / 2" }]
       }
     },
     {
@@ -102,6 +151,12 @@
             "title": "Arrivals"
           }
         ]
+      },
+      "projection": {
+        "type": "equalEarth",
+        "scale": { "expr": "140 * zoom" },
+        "center": { "expr": "center" },
+        "translate": [{ "signal": "width / 2" }, { "signal": "height / 2" }]
       }
     }
   ]
