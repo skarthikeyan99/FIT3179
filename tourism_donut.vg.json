@@ -1,0 +1,67 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/skarthikeyan99/FIT3179/main/international-tourist-arrivals-by-world-region.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 150,
+        "outerRadius": 220
+      },
+      "encoding": {
+        "theta": {
+          "field": "International Tourist Arrivals",
+          "type": "quantitative",
+          "stack": true
+        },
+        "color": {
+          "field": "Entity",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Africa",
+              "Americas",
+              "Asia & Pacific",
+              "Europe",
+              "Middle East"
+            ],
+            "range": ["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00"]
+          },
+          "legend": {
+            "orient": "none",
+            "legendX": 320,
+            "legendY": 20,
+            "direction": "vertical",
+            "title": null
+          }
+        },
+        "tooltip": [
+          { "field": "Entity", "type": "nominal", "title": "Region" },
+          {
+            "field": "International Tourist Arrivals",
+            "type": "quantitative",
+            "title": "Tourist Arrivals",
+            "format": ",.0f"
+          }
+        ]
+      }
+    }
+  ],
+  "view": { "stroke": null },
+  "config": {
+    "font": "Montserrat",
+    "axis": {
+      "labelFont": "Montserrat",
+      "titleFont": "Montserrat"
+    },
+    "legend": {
+      "labelFont": "Montserrat",
+      "titleFont": "Montserrat"
+    },
+    "anchor" : "middle"
+  }
+}

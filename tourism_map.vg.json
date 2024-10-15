@@ -2,13 +2,6 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 900,
   "height": 450,
-  "title": {
-    "text": "International Tourist Arrivals in 2018",
-    "fontSize": 16,
-    "font": "Montserrat",
-    "anchor": "middle",
-    "color": "#333333"
-  },
   "projection": {
     "type": "equalEarth",
     "rotate": [-10, 0, 0]

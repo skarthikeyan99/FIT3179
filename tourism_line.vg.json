@@ -2,11 +2,6 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 800,
   "height": 400,
-  "title": {
-    "text": "Global Air Passengers Carried (1970-2020)",
-    "fontSize": 16,
-    "font": "Montserrat"
-  },
   "data": {
     "url": "https://raw.githubusercontent.com/skarthikeyan99/FIT3179/main/air-passengers-carried-world.csv"
   },

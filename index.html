@@ -39,6 +39,9 @@
         width: 1000px;
         margin-left: auto;
         margin-right: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
       .chart-title {
         font-size: 1.5em;
@@ -68,7 +71,6 @@
       .metadata a:hover {
         text-decoration: underline;
       }
-      /* New styles for Vega-Lite dropdown */
       .vega-bind {
         font-size: 12px;
         font-weight: bold;
@@ -91,7 +93,7 @@
 
       <div class="chart-container">
         <div class="chart-title">
-          Global Distribution of International Tourist Arrivals
+          Global Distribution of International Tourist Arrivals (2018)
         </div>
         <div class="chart-description">
           This map visualizes the number of international tourist arrivals for
@@ -104,7 +106,7 @@
 
       <div class="chart-container">
         <div class="chart-title">
-          Top Countries by International Tourist Arrivals
+          International Tourism Arrivals by Country and Continent (2018)
         </div>
         <div class="chart-description">
           This bubble chart showcases the top countries based on the number of
@@ -116,8 +118,19 @@
       </div>
 
       <div class="chart-container">
+        <div class="chart-title">Distribution of Arrivals by Region (2018)</div>
+        <div class="chart-description">
+          This bubble chart showcases the top countries based on the number of
+          international tourist arrivals. The size of each bubble corresponds to
+          the number of arrivals, providing a quick visual comparison between
+          leading tourism destinations.
+        </div>
+        <div id="donut_chart"></div>
+      </div>
+
+      <div class="chart-container">
         <div class="chart-title">
-          Top 10 Countries by Air Passengers Carried
+          Top 10 Countries by Air Passengers Carried (2019)
         </div>
         <div class="chart-description">
           This bubble chart showcases the top countries based on the number of
@@ -129,7 +142,9 @@
       </div>
 
       <div class="chart-container">
-        <div class="chart-title">Air Passengers Carried Worldwide</div>
+        <div class="chart-title">
+          Air Passengers Carried Worldwide (1970 - 2020)
+        </div>
         <div class="chart-description">
           This bubble chart showcases the top countries based on the number of
           international tourist arrivals. The size of each bubble corresponds to
@@ -164,6 +179,7 @@
       vegaEmbed("#bubble_chart", "tourism_bubble.vg.json", vegaEmbedOpts);
       vegaEmbed("#bar_chart", "tourism_bar.vg.json", vegaEmbedOpts);
       vegaEmbed("#line_chart", "tourism_line.vg.json", vegaEmbedOpts);
+      vegaEmbed("#donut_chart", "tourism_donut.vg.json", vegaEmbedOpts);
     </script>
   </body>
 </html>
