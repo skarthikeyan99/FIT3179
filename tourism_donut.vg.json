@@ -33,8 +33,8 @@
           },
           "legend": {
             "orient": "none",
-            "legendX": 320,
-            "legendY": 20,
+            "legendX": 520,
+            "legendY": 0,
             "direction": "vertical",
             "title": null
           }
@@ -49,6 +49,36 @@
           }
         ]
       }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "radius": 240,
+        "align": "center"
+      },
+      "encoding": {
+        "text": {
+          "field": "annotation",
+          "type": "nominal"
+        },
+        "theta": {
+          "field": "International Tourist Arrivals",
+          "type": "quantitative",
+          "stack": true,
+          "sort": "descending"
+        },
+        "color": { "value": "black" }
+      },
+      "transform": [
+        {
+          "calculate": "datum.Entity + ' (' + format(datum['International Tourist Arrivals'] / 1404000000 * 100, '.1f') + '%)'",
+          "as": "annotation"
+        },
+        {
+          "calculate": "(datum['International Tourist Arrivals'] / 1404000000) < 0.1 ? 'left' : 'center'",
+          "as": "align"
+        }
+      ]
     }
   ],
   "view": { "stroke": null },
@@ -62,6 +92,6 @@
       "labelFont": "Montserrat",
       "titleFont": "Montserrat"
     },
-    "anchor" : "middle"
+    "anchor": "middle"
   }
 }
