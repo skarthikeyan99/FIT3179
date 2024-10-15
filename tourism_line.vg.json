@@ -10,10 +10,6 @@
   "data": {
     "url": "https://raw.githubusercontent.com/skarthikeyan99/FIT3179/main/air-passengers-carried-world.csv"
   },
-  "mark": {
-    "type": "line",
-    "point": true
-  },
   "encoding": {
     "x": {
       "field": "Year",
@@ -28,21 +24,64 @@
       "field": "Air transport, passengers carried",
       "type": "quantitative",
       "axis": {
-        "title": "Passengers Carried (billions)",
+        "title": "Passengers Carried",
         "format": "~s",
         "labelExpr": "datum.value / 1e9 + 'B'"
       }
-    },
-    "tooltip": [
-      { "field": "Year", "type": "temporal", "title": "Year", "format": "%Y" },
-      {
-        "field": "Air transport, passengers carried",
-        "type": "quantitative",
-        "title": "Passengers Carried",
-        "format": ","
-      }
-    ]
+    }
   },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "point": true
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "Year",
+            "type": "temporal",
+            "title": "Year",
+            "format": "%Y"
+          },
+          {
+            "field": "Air transport, passengers carried",
+            "type": "quantitative",
+            "title": "Passengers Carried",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 5,
+        "dy": -10,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": { "field": "annotation", "type": "nominal" },
+        "color": { "value": "black" },
+        "opacity": {
+          "condition": {
+            "test": "datum.Year == '2019' || datum.Year == '2020'",
+            "value": 1
+          },
+          "value": 0
+        }
+      },
+      "transform": [
+        {
+          "calculate": "datum.Year == '2019' ? '2019: Peak at 4.56B passengers' : datum.Year == '2020' ? '2020: COVID-19 impact, 1.81B passengers' : ''",
+          "as": "annotation"
+        }
+      ]
+    }
+  ],
   "config": {
     "font": "Montserrat",
     "axis": {
